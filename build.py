@@ -1,4 +1,5 @@
 ﻿fname = 'data/nouns.txt'
+fout = 'data/words.js'
 
 categories = (
     'none',
@@ -19,6 +20,8 @@ categories = (
 
 base_categories = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '?', 'block')
 
+filter_categories = {'1': 'easy', '2': 'common', '6': 'uncommon'}
+
 test_cases = [
     'японоведение:4 a',
     'абаз',
@@ -27,57 +30,36 @@ test_cases = [
 ]
 
 # * start
-# init stats
-count = 0
-stats = dict(((v, 0) for v in categories))
 
 
-def get_category(line):
+def parse_line(line):
     (word, *description) = line.split(':')
     # print(word, description)
     if not len(description):
-        return 'none'
+        return word, 'none'
 
     (cat, *comments) = ''.join(description).split(' ')
     if cat not in base_categories:
         print(line, cat)
-        return 'other'
+        return word, 'other'
 
     # else cat in base categories
     if cat not in ('?', 'block') and len(comments):
         cat += '+'
 
-    return cat
+    return word, cat
 
 
-def process_case(s):
-    global count
-    cat = get_category(s)
-    if cat in stats:
-        stats[cat] += 1
-    else:
-        print(s, cat)
-    count += 1
+def process_case(s, fo):
+    (word, cat) = parse_line(s)
+    group = filter_categories.get(cat, None)
+    if group:
+        s = f'  {{word:"{word}", cat:"{group}"}},'
+        fo.write(s+'\n')
 
 
-def print_stats(data):
-    for cat, count in data.items():
-        if count:
-            print(f"{cat}: {count}")
-
-
-def test():
-    for s in test_cases:
-        process_case(s)
-
-    print_stats(stats)
-
-
-# * go!
-# test()
-# exit()
-
-for line in open(fname, 'r', encoding='utf-8'):
-    process_case(line.strip())
-
-print_stats(stats)
+with open(fout, 'w', encoding='utf-8') as fo:
+    fo.write('const words = [' + '\n')
+    for line in open(fname, 'r', encoding='utf-8'):
+        process_case(line.strip(), fout)
+    fo.write('];' + '\n')
