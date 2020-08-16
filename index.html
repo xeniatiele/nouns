@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>noun for puzzle</title>
+</head>
+<style>
+    body {
+        background: #ddd;
+    }
+
+    #app {
+        background: #eee;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    #header {
+        background: #ded;
+        padding: 10px 0;
+    }
+
+    #btn {
+        width: 120px;
+    }
+
+    label {
+        text-transform: capitalize;
+    }
+
+    textarea {
+        font-size: 16px;
+    }
+</style>
+<script src="data/words.js"></script>
+<div id="app">
+
+<script>
+  const write = (s) => { document.write(s); };
+  const elem = (id) => document.getElementById(id);
+
+  const cats = ['easy', 'common', 'uncommon'];
+
+  // function app() {
+  //
+  // }
+
+  const put_checkbox = (cat) => {
+    write(
+      `<input type="checkbox" id=id_${cat} value="${cat}" checked onChange="optionsChanged();">`
+      +`<label for=id_${cat}>${cat}</label> | `
+    );
+  };
+</script>
+
+  <div id="header">
+<script>
+  for (const v of cats) {
+    put_checkbox(v);
+  }
+</script>
+    <button id="btn" onclick="commandGen();">Gen</button>
+  </div>
+<textarea id="log" rows="10" cols="42"></textarea>
+<script>
+  const log = elem('log');
+
+  const print = (s) => {
+    log.value = s + '\n' + log.value
+  };
+
+  let wordsList = [];
+
+  const getCats = () => {
+    return cats.filter( v => elem('id_'+v).checked);
+  };
+
+  const filterWords = (cats) => {
+    wordsList = words.filter(v => cats.includes(v.cat));
+  };
+
+  const optionsChanged = () => {
+    const cats = getCats();
+    filterWords(cats);
+    print(wordsList.length + ' words loaded: ' + cats)
+  };
+
+  const commandGen = () => {
+    const limit = wordsList.length;
+    const index = Math.floor(Math.random() * limit);
+    const item = wordsList[index];
+    print(`${item.word} (${item.cat})`);
+  };
+
+  // go!
+  optionsChanged();
+</script>
+</div>
+
+</html>
