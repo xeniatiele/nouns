@@ -1,4 +1,4 @@
-const version_date="2020-08-17";
+const version_date="2020-08-18";
 const words = [
   {word:"абак", cat:"uncommon"},
   {word:"аббат", cat:"common"},
@@ -29,6 +29,7 @@ const words = [
   {word:"авангардизм", cat:"common"},
   {word:"аванпост", cat:"common"},
   {word:"аванс", cat:"common"},
+  {word:"авансцена", cat:"uncommon"},
   {word:"авантюра", cat:"common"},
   {word:"авантюризм", cat:"common"},
   {word:"авантюрин", cat:"uncommon"},
@@ -37,7 +38,10 @@ const words = [
   {word:"август", cat:"common"},
   {word:"авиабаза", cat:"common"},
   {word:"авиабомба", cat:"easy"},
+  {word:"авиаконструктор", cat:"common"},
+  {word:"авиалайнер", cat:"easy"},
   {word:"авиалиния", cat:"easy"},
+  {word:"авиаматка", cat:"uncommon"},
   {word:"авиамеханик", cat:"common"},
   {word:"авианосец", cat:"easy"},
   {word:"авиация", cat:"common"},
