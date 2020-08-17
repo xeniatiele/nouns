@@ -65,6 +65,9 @@ def print_stats(data):
         if count:
             print(f"{cat}: {count}")
 
+    usable = data['1'] + data['2'] + data['6']
+    print(f"\n---\nusable: {usable}")
+
 
 def test():
     for s in test_cases:
