@@ -94,6 +94,7 @@
 
   const commandGen = () => {
     const limit = wordsList.length;
+    if (!limit) { return; }
     const index = Math.floor(Math.random() * limit);
     const item = wordsList[index];
     print(`${item.word} (${item.cat})`);
