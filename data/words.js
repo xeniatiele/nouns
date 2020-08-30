@@ -466,7 +466,7 @@ const words = [
   {word:"кутёж", cat:"common"},
   {word:"кутюрье", cat:"common"},
   {word:"кухня", cat:"easy"},
-  {word:"кучер", cat:"common"},
+  {word:"кучер", cat:"easy"},
   {word:"кучность", cat:"uncommon"},
   {word:"кушак", cat:"uncommon"},
   {word:"лабиринт", cat:"easy"},
