@@ -44,6 +44,7 @@
         height: 400px;
     }
 </style>
+<script src="data/temporary_disabled.js"></script>
 <script src="data/words.js"></script>
 <div id="app">
 <script>
@@ -83,7 +84,8 @@
   };
 
   const filterWords = (cats) => {
-    wordsList = words.filter(v => cats.includes(v.cat));
+    wordsList = words.filter(v => cats.includes(v.cat)
+      && !temporary_disabled.includes(v.word));
   };
 
   const optionsChanged = () => {
@@ -102,6 +104,7 @@
 
   // go!
   print(`words base from: ${version_date}`);
+  print(`${temporary_disabled.length} words temporary disabled`);
   optionsChanged();
 </script>
 </div>
