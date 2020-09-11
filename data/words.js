@@ -1,4 +1,4 @@
-const version_date="2020-09-05";
+const version_date="2020-09-12";
 const words = [
   {word:"абак", cat:"uncommon"},
   {word:"аббат", cat:"common"},
@@ -757,6 +757,7 @@ const words = [
   {word:"этнография", cat:"common"},
   {word:"этнос", cat:"common"},
   {word:"этюд", cat:"uncommon"},
+  {word:"эфа", cat:"uncommon"},
   {word:"эфемерность", cat:"common"},
   {word:"эфес", cat:"uncommon"},
   {word:"эфир", cat:"common"},
@@ -781,6 +782,7 @@ const words = [
   {word:"юрисдикция", cat:"common"},
   {word:"юриспруденция", cat:"common"},
   {word:"юрист", cat:"common"},
+  {word:"юродивый", cat:"common"},
   {word:"юродство", cat:"common"},
   {word:"юрта", cat:"easy"},
   {word:"юстировка", cat:"uncommon"},
