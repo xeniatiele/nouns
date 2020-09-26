@@ -2,77 +2,42 @@
 <html>
 <head>
 <title>nouns for puzzles</title>
-</head>
-<style>
-    body {
-        background: #ddd;
-    }
-
-    body, label, button, textarea {
-        font-size: 16px;
-    }
-
-    #app {
-        background: #eee;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    #header {
-        background: #ded;
-        padding: 10px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-    #header div {
-        width: 25%;
-    }
-
-    label {
-        text-transform: capitalize;
-    }
-
-
-    #btn {
-        height: 70px;
-        width: 100%;
-    }
-
-    #log {
-        width: 100%;
-        height: 400px;
-    }
-</style>
+<link rel="stylesheet" href="js/app.css">
 <script src="data/temporary_disabled.js"></script>
 <script src="data/words.js"></script>
-<div id="app">
+</head>
+
 <script>
   const write = (s) => { document.write(s); };
   const elem = (id) => document.getElementById(id);
 
   const cats = ['easy', 'common', 'uncommon'];
 
-  const put_checkbox = (cat) => {
+  const renderCheckbox = (cat) => {
     write(
       `<div><input type="checkbox" id=id_${cat} value="${cat}" checked onChange="optionsChanged();">`
-      +`<label for=id_${cat}>${cat}</label></div>`
+      +`<label for=id_${cat}>${cat}</label></div>\n`
     );
   };
-</script>
 
-  <div id="header">
-<script>
-  for (const v of cats) {
-    put_checkbox(v);
-  }
-</script>
-    <div><button id="btn" onclick="commandGen();">Gen</button></div>
-  </div>
-  <textarea id="log"></textarea>
-<script>
+  const renderHeader = () => {
+    write('<div id="header">\n');
+    for (const v of cats) {
+      renderCheckbox(v);
+    }
+    write('<div><button id="btn" onclick="commandGen();">Gen</button></div>\n');
+    write('</div>\n');
+  };
+
+  const renderApp = () => {
+    write('<div id="app">\n');
+    renderHeader();
+    write('<textarea id="log" readonly></textarea>');
+    write('</div>\n');
+  };
+  renderApp();
+
   const log = elem('log');
-
   const print = (s) => {
     log.value = s + '\n' + log.value
   };
@@ -107,5 +72,4 @@
   print(`${temporary_disabled.length} words temporary disabled`);
   optionsChanged();
 </script>
-</div>
 </html>
