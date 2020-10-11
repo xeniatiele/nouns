@@ -28,14 +28,20 @@
         text-transform: capitalize;
     }
 
-    /*.category > div {*/
-        /*text-transform: capitalize;*/
-        /*margin-right: 10px;*/
-    /*}*/
+    .category > div {
+        font-family: Arial;
+        font-size: 16px;
+        text-transform: capitalize;
+        padding-top: 25px;
+        text-align: center;
+        margin-right: 10px;
+        height: 43px;
+        border: 1px solid #888;
+    }
 
-    /*.category > div.active {*/
-        /*background: #dfd;*/
-    /*}*/
+    .category > div.active {
+        background: #dfd;
+    }
 
     #btn {
         height: 70px;

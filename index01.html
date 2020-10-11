@@ -10,11 +10,11 @@
 
 <div id="app">
     <div id="header">
-        <div v-for="cat in cats">
-        <!--<div v-for="cat in cats" :key="cat" class="category">-->
-            <!--<check-box :title="cat" @change="optionsChange();"></check-box>-->
-            <input type="checkbox" :id=`id_${cat}` :value=cat checked onChange="optionsChanged();">
-            <label :for=`id_${cat}`>{{cat}}</label>
+        <!--<div v-for="cat in cats">-->
+        <div v-for="cat in cats" :key="cat" class="category">
+            <check-box :title="cat" @change="catChange();"></check-box>
+            <!--<input type="checkbox" :id=`id_${cat}` :value=cat checked onChange="optionsChanged();">-->
+            <!--<label :for=`id_${cat}`>{{cat}}</label>-->
         </div>
         <div><button id="btn" onclick="commandGen();">Gen</button></div>
     </div>
@@ -31,40 +31,13 @@
   let wordsList = [];
 
   const cats = ['easy', 'common', 'uncommon']
-
-  const Nouns = {
-    data() {
-      return {
-        cats: cats,
-      }
-    }
-  };
-  // console.log(Nouns);
-  //const app = Vue.createApp(Nouns)
-  // app.component('check-box', {
-  //   props: ['title', 'checked'],
-  //   emits: ['change'],
-  //   data() {
-  //     return {checked: true}
-  //   },
-  //   onClick() {
-  //     this.checked = ! this.checked
-  //     $emit('change')
-  //   },
-  //   template: '<div @click="onClick" :id=`id_${title}` :class=\'checked ? "active": ""\'>{{title}}</div>',
-  // })
-  //app.mount('#app')
-
-  Vue.createApp(Nouns).mount('#header')
-
+  // const getCats = () => {
+  //   return cats.filter( v => elem('id_'+v).checked);
+  // };
 
   const getCats = () => {
-    return cats.filter( v => elem('id_'+v).checked);
+    return cats.filter( v => elem('id_'+v).classList.contains('active'))
   };
-
-  // const getCats = () => {
-  //   return cats.filter( v => elem('id_'+v).classList.contains('active'))
-  // };
 
   const filterWords = (cats) => {
     wordsList = words.filter(v => cats.includes(v.cat)
@@ -85,12 +58,50 @@
     print(`${item.word} (${item.cat})`);
   };
 
+  const Nouns = {
+    data() {
+      return {
+        cats: cats,
+        changeHandle: optionsChanged,
+      }
+    },
+    methods: {
+      catChange() {
+        console.log('catChange')
+        //this.changeHandle()
+      }
+    }
+  };
+
+  const app = Vue.createApp(Nouns)
+
+  app.component('check-box', {
+    props: ['title', 'checked'],
+    emits: ['change'],
+    data() {
+      return {checked: true}
+    },
+    methods: {
+      onClick() {
+        console.log('onClick', this.title)
+        this.checked = !this.checked
+        this.$emit('change')
+      },
+    },
+    template: '<div :click="onClick()" :id=`id_${title}` :class=\'checked ? "active": ""\'>{{title}}</div>',
+  })
+  app.mount('#header')
+
+//  Vue.createApp(Nouns).mount('#header')
+
+
+
   // go!
   // const cats1 = getCats()
   // console.log(cats1)
 
-  print(`words base from: ${version_date}`);
-  print(`${temporary_disabled.length} words temporary disabled`);
-  optionsChanged();
+  //print(`words base from: ${version_date}`);
+  //print(`${temporary_disabled.length} words temporary disabled`);
+  //optionsChanged();
 </script>
 </html>
