@@ -1,0 +1,98 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>nouns for puzzles</title>
+<link rel="stylesheet" href="js/app.css">
+<script src="data/temporary_disabled.js"></script>
+<script src="data/words.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<div id="app">
+    <div id="header">
+        <div v-for="cat in cats">
+        <!--<div v-for="cat in cats" :key="cat" class="category">-->
+            <!--<check-box :title="cat" @change="optionsChange();"></check-box>-->
+            <input type="checkbox" :id=`id_${cat}` :value=cat checked onChange="optionsChanged();">
+            <label :for=`id_${cat}`>{{cat}}</label>
+        </div>
+        <div><button id="btn" onclick="commandGen();">Gen</button></div>
+    </div>
+    <textarea id="log" readonly></textarea>
+</div>
+
+<script>
+  const elem = (id) => document.getElementById(id)
+  const log = elem('log');
+  const print = (s) => {
+    log.value = s + '\n' + log.value
+  };
+
+  let wordsList = [];
+
+  const cats = ['easy', 'common', 'uncommon']
+
+  const Nouns = {
+    data() {
+      return {
+        cats: cats,
+      }
+    }
+  };
+  // console.log(Nouns);
+  //const app = Vue.createApp(Nouns)
+  // app.component('check-box', {
+  //   props: ['title', 'checked'],
+  //   emits: ['change'],
+  //   data() {
+  //     return {checked: true}
+  //   },
+  //   onClick() {
+  //     this.checked = ! this.checked
+  //     $emit('change')
+  //   },
+  //   template: '<div @click="onClick" :id=`id_${title}` :class=\'checked ? "active": ""\'>{{title}}</div>',
+  // })
+  //app.mount('#app')
+
+  Vue.createApp(Nouns).mount('#header')
+
+
+  const getCats = () => {
+    return cats.filter( v => elem('id_'+v).checked);
+  };
+
+  // const getCats = () => {
+  //   return cats.filter( v => elem('id_'+v).classList.contains('active'))
+  // };
+
+  const filterWords = (cats) => {
+    wordsList = words.filter(v => cats.includes(v.cat)
+      && !temporary_disabled.includes(v.word));
+  };
+
+  const optionsChanged = () => {
+    const cats = getCats();
+    filterWords(cats);
+    print(wordsList.length + ' words loaded: ' + cats)
+  };
+
+  const commandGen = () => {
+    const limit = wordsList.length;
+    if (!limit) { return; }
+    const index = Math.floor(Math.random() * limit);
+    const item = wordsList[index];
+    print(`${item.word} (${item.cat})`);
+  };
+
+  // go!
+  // const cats1 = getCats()
+  // console.log(cats1)
+
+  print(`words base from: ${version_date}`);
+  console.log(1);
+  print(`${temporary_disabled.length} words temporary disabled`);
+  console.log(2);
+  optionsChanged();
+</script>
+</html>

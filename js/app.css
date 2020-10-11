@@ -19,13 +19,23 @@
         flex-direction: row;
         align-items: center;
     }
-    #header div {
+
+    #header > div {
         width: 25%;
     }
 
     label {
         text-transform: capitalize;
     }
+
+    /*.category > div {*/
+        /*text-transform: capitalize;*/
+        /*margin-right: 10px;*/
+    /*}*/
+
+    /*.category > div.active {*/
+        /*background: #dfd;*/
+    /*}*/
 
     #btn {
         height: 70px;
