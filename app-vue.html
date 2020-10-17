@@ -10,11 +10,8 @@
 
 <div id="app">
     <div id="header">
-        <!--<div v-for="cat in cats">-->
         <div v-for="cat in cats" :key="cat" class="category">
             <check-box :title="cat" @change="catChange();"></check-box>
-            <!--<input type="checkbox" :id=`id_${cat}` :value=cat checked onChange="optionsChanged();">-->
-            <!--<label :for=`id_${cat}`>{{cat}}</label>-->
         </div>
         <div><button id="btn" onclick="commandGen();">Gen</button></div>
     </div>
@@ -31,9 +28,6 @@
   let wordsList = [];
 
   const cats = ['easy', 'common', 'uncommon']
-  // const getCats = () => {
-  //   return cats.filter( v => elem('id_'+v).checked);
-  // };
 
   const getCats = () => {
     return cats.filter( v => elem('id_'+v).classList.contains('active'))
@@ -68,7 +62,7 @@
     methods: {
       catChange() {
         console.log('catChange')
-        //this.changeHandle()
+        this.changeHandle()
       }
     }
   };
@@ -76,7 +70,7 @@
   const app = Vue.createApp(Nouns)
 
   app.component('check-box', {
-    props: ['title', 'checked'],
+    props: ['title'],
     emits: ['change'],
     data() {
       return {checked: true}
@@ -85,23 +79,20 @@
       onClick() {
         console.log('onClick', this.title)
         this.checked = !this.checked
-        this.$emit('change')
+        setTimeout(() => {this.$emit('change')},1)
       },
     },
-    template: '<div :click="onClick()" :id=`id_${title}` :class=\'checked ? "active": ""\'>{{title}}</div>',
+    template: '<div @click="onClick()" :id="\'id_\' + title" :class=\'checked ? "active": ""\'>{{title}}</div>',
   })
   app.mount('#header')
-
-//  Vue.createApp(Nouns).mount('#header')
-
 
 
   // go!
   // const cats1 = getCats()
   // console.log(cats1)
 
-  //print(`words base from: ${version_date}`);
-  //print(`${temporary_disabled.length} words temporary disabled`);
-  //optionsChanged();
+  print(`words base from: ${version_date}`);
+  print(`${temporary_disabled.length} words temporary disabled`);
+  optionsChanged();
 </script>
 </html>

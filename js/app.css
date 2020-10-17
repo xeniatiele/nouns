@@ -29,9 +29,10 @@
     }
 
     .category > div {
-        font-family: Arial;
+        font-family: Arial, sans-serif;
         font-size: 16px;
         text-transform: capitalize;
+        color: #888;
         padding-top: 25px;
         text-align: center;
         margin-right: 10px;
@@ -40,6 +41,7 @@
     }
 
     .category > div.active {
+        color: inherit;
         background: #dfd;
     }
 
