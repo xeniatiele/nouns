@@ -1,13 +1,3 @@
-﻿<!doctype html>
-<html>
-<head>
-<title>nouns for puzzles</title>
-<link rel="stylesheet" href="js/app.css">
-<script src="data/temporary_disabled.js"></script>
-<script src="data/words.js"></script>
-</head>
-
-<script>
   const write = (s) => { document.write(s); };
   const elem = (id) => document.getElementById(id);
 
@@ -71,5 +61,3 @@
   print(`words base from: ${version_date}`);
   print(`${temporary_disabled.length} words temporary disabled`);
   optionsChanged();
-</script>
-</html>
