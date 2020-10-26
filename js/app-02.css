@@ -1,0 +1,64 @@
+    body {
+        background: #ddd;
+    }
+
+    body, label, button, textarea {
+        font-size: 16px;
+    }
+
+    #app {
+        background: #eee;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    #header {
+        background: #ded;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid #bbb;
+        border-bottom: 0;
+    }
+
+    #header > div {
+        width: 25%;
+        cursor: pointer;
+    }
+
+    .category > div {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        text-transform: capitalize;
+        color: #888;
+        padding-top: 25px;
+        text-align: center;
+        margin-right: 10px;
+        line-height: 20px;
+        height: 43px;
+        border: 1px solid #888;
+    }
+    .category > div.active {
+        color: inherit;
+        background: #dfd;
+    }
+    .category > div.active::before {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        content: '\2713  ';
+    }
+
+    #btn {
+        height: 70px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    #log {
+        width:100%;
+        max-width: 594px;
+        height: 400px;
+        resize: none;
+        border: 1px solid #888;
+    }
